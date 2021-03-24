@@ -14,5 +14,7 @@ INSERT INTO product (name, price, person_id) VALUES ('coat', '5000', '1');
 INSERT INTO product (name, price, person_id) VALUES ('shoes', '3000', '2');
 INSERT INTO product (name, price, person_id) VALUES ('shirt', '2500', '3');
 INSERT INTO product (name, price, person_id) VALUES ('trousers', '4000', '4');
+INSERT INTO product (name, price, person_id) VALUES ('snikers', '4500', '3');
+INSERT INTO product (name, price, person_id) VALUES ('shirt', '2500', '1');
 
 SELECT * FROM product LEFT JOIN person ON product.person_id = person.id;

@@ -1,6 +1,7 @@
 package ru.geekbrains.service;
 
 import org.hibernate.cfg.Configuration;
+import org.springframework.stereotype.Service;
 import ru.geekbrains.entity.Product;
 
 import javax.persistence.EntityManager;
@@ -9,6 +10,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import java.util.List;
 
+@Service
 public class ProductDao {
 
     Manager man = new Manager();
