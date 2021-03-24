@@ -1,4 +1,4 @@
-package ru.geekbrains;
+package ru.geekbrains.service;
 
 import org.hibernate.cfg.Configuration;
 import ru.geekbrains.entity.Product;
@@ -11,11 +11,8 @@ import java.util.List;
 
 public class ProductDao {
 
-    EntityManagerFactory factory = new Configuration()
-            .configure("hibernate.xml")
-            .buildSessionFactory();
-
-    EntityManager manager = factory.createEntityManager();
+    Manager man = new Manager();
+    EntityManager manager =  man.getManager();
 
     Product product = new Product("skirt", 1000);
 

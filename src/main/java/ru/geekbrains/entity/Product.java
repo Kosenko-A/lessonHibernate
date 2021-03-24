@@ -29,9 +29,13 @@ public class Product {
         this.price = price;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "product_id")
+    private Person person;
+
     @Override
     public String toString() {
-        return String.format("id: %s, title: %s, price: %s", id, title, price);
+        return String.format("id: %s, title: %s, price: %s, customer: %s", id, title, price, person!= null ? person.getName() : "");
     }
 
     public Long getId() {
