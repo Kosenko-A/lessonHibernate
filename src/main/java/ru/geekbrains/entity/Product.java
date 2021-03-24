@@ -30,7 +30,7 @@ public class Product {
     }
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "id", referencedColumnName = "product_id")
+    @JoinColumn(name = "person_id", referencedColumnName = "id")
     private Person person;
 
     @Override

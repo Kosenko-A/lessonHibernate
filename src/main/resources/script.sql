@@ -3,16 +3,16 @@ id serial primary key,
 name varchar(128)
 )
 
-ALTER TABLE person add column product_id integer references product(id);
+ALTER TABLE product add column person_id integer references person(id);
 
-INSERT INTO person (name, product_id) VALUES ('Arina', '1');
-INSERT INTO person (name, product_id) VALUES ('Maria', '4');
-INSERT INTO person (name, product_id) VALUES ('Alexey', '5');
-INSERT INTO person (name, product_id) VALUES ('Ivan', '6');
+INSERT INTO person (name) VALUES ('Arina');
+INSERT INTO person (name) VALUES ('Maria');
+INSERT INTO person (name) VALUES ('Alexey');
+INSERT INTO person (name) VALUES ('Ivan');
 
-INSERT INTO product (name, price) VALUES ('coat', '5000');
-INSERT INTO product (name, price) VALUES ('shoes', '3000');
-INSERT INTO product (name, price) VALUES ('shirt', '2500');
-INSERT INTO product (name, price) VALUES ('trousers', '4000');
+INSERT INTO product (name, price, person_id) VALUES ('coat', '5000', '1');
+INSERT INTO product (name, price, person_id) VALUES ('shoes', '3000', '2');
+INSERT INTO product (name, price, person_id) VALUES ('shirt', '2500', '3');
+INSERT INTO product (name, price, person_id) VALUES ('trousers', '4000', '4');
 
-SELECT * FROM person LEFT JOIN product ON person.product_id = product.id;
+SELECT * FROM product LEFT JOIN person ON product.person_id = person.id;
