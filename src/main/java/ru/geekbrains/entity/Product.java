@@ -1,6 +1,7 @@
 package ru.geekbrains.entity;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -29,13 +30,17 @@ public class Product {
         this.price = price;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "person_id", referencedColumnName = "id")
-    private Person person;
+    @ManyToMany
+    @JoinTable(
+            name = "person_product",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn (name = "person_id")
+    )
+    private List<Person> personList;
 
     @Override
     public String toString() {
-        return String.format("id: %s, title: %s, price: %s, customer: %s", id, title, price, person!= null ? person.getName() : "");
+        return String.format("id: %s, title: %s, price: %s", id, title, price);
     }
 
     public Long getId() {
@@ -60,5 +65,13 @@ public class Product {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public List<Person> getPersonList() {
+        return personList;
+    }
+
+    public void setPersonList(List<Person> personList) {
+        this.personList = personList;
     }
 }

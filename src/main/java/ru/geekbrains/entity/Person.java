@@ -2,7 +2,6 @@ package ru.geekbrains.entity;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Table(name = "person")
@@ -15,12 +14,17 @@ public class Person {
 
     private String name;
 
-    @OneToMany(mappedBy = "person", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @ManyToMany
+    @JoinTable(
+            name = "person_product",
+            joinColumns = @JoinColumn(name = "person_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
     private List <Product> productList;
 
     @Override
     public String toString() {
-        return String.format("id: %s, name: %s, list: %s", id, name, productList.toString());
+        return String.format("id: %s, name: %s", id, name);
     }
 
     public Person() {

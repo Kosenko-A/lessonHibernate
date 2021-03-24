@@ -10,11 +10,22 @@ INSERT INTO person (name) VALUES ('Maria');
 INSERT INTO person (name) VALUES ('Alexey');
 INSERT INTO person (name) VALUES ('Ivan');
 
-INSERT INTO product (name, price, person_id) VALUES ('coat', '5000', '1');
-INSERT INTO product (name, price, person_id) VALUES ('shoes', '3000', '2');
-INSERT INTO product (name, price, person_id) VALUES ('shirt', '2500', '3');
-INSERT INTO product (name, price, person_id) VALUES ('trousers', '4000', '4');
-INSERT INTO product (name, price, person_id) VALUES ('snikers', '4500', '3');
-INSERT INTO product (name, price, person_id) VALUES ('shirt', '2500', '1');
+INSERT INTO product (name, price) VALUES ('coat', '5000');
+INSERT INTO product (name, price) VALUES ('shoes', '3000');
+INSERT INTO product (name, price) VALUES ('shirt', '2500');
+INSERT INTO product (name, price) VALUES ('trousers', '4000');
+INSERT INTO product (name, price) VALUES ('snikers', '4500');
+INSERT INTO product (name, price) VALUES ('shirt', '2500');
 
-SELECT * FROM product LEFT JOIN person ON product.person_id = person.id;
+CREATE TABLE person_product (
+person_id integer REFERENCES person(id),
+product_id integer REFERENCES product(id)
+)
+
+INSERT INTO person_product (person_id, product_id) VALUES ('1', '13');
+INSERT INTO person_product (person_id, product_id) VALUES ('3', '18');
+INSERT INTO person_product (person_id, product_id) VALUES ('4', '15');
+INSERT INTO person_product (person_id, product_id) VALUES ('5', '13');
+INSERT INTO person_product (person_id, product_id) VALUES ('1', '16');
+INSERT INTO person_product (person_id, product_id) VALUES ('4', '17');
+

@@ -2,6 +2,7 @@ package ru.geekbrains.service;
 
 import org.hibernate.cfg.Configuration;
 import org.springframework.stereotype.Service;
+import ru.geekbrains.entity.Person;
 import ru.geekbrains.entity.Product;
 
 import javax.persistence.EntityManager;
@@ -19,13 +20,13 @@ public class ProductDao {
     Product product = new Product("skirt", 1000);
 
     public Product findById(Long id) {
-        Query query = manager.createQuery("select p from Product p where p.id = :id");
+        Query query = manager.createQuery("select p from Product p where p.id = :id", Product.class);
         query.setParameter("id", id);
         Product anotherProduct;
         try {
-            anotherProduct = (Product)query.getSingleResult();
+            anotherProduct = (Product) query.getSingleResult();
         } catch (NoResultException e) {
-            System.out.println("This product wasn't found");
+            System.out.println("This person wasn't found");
             anotherProduct = new Product();
         }
         return anotherProduct;
